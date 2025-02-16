@@ -1,93 +1,142 @@
 # Backend API Documentation
 
-## Endpoint
-`/users/register`
+## /users/register Endpoint
 
-## Description
+### Description
 This endpoint is used to register a new user. It validates the input data, hashes the password, creates a new user in the database, and returns an authentication token along with the user details.
 
-## HTTP Method 
+### HTTP Method 
 `POST`
 
-## Request Body
+### Request Body
 The request body should be a JSON object with the following fields:
 - `fullname`: An object containing:
   - `firstname`: A string with at least 3 characters (required)
-  - `lastname`: A string with at least 3 characters (required)
+  - `lastname`: A string with at least 3 characters 
 - `email`: A string representing a valid email address (required)
 - `password`: A string with at least 6 characters (required)
 
-## Example Response:
-- `user`
-    {
-    - "fullname": {
-      - "firstname": "John",
-      - "lastname": "Doe"
-      },
-    - "email": "john.doe@example.com",
-    - "password": "password123"
-    }
-- `token`(String) : JWT Token
+### Example Response:
+```json
+{ 
+  "token": "JWT Token (string)",
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }
+}
+```
 
-## Endpoint
-`/users/login`
+## /users/login Endpoint
 
-## Description
+### Description
 This endpoint is used to authenticate a user. It validates the input data, checks the email and password against the database, and returns an authentication token along with the user details if the credentials are valid.
 
-## HTTP Method 
+### HTTP Method 
 `POST`
 
-## Request Body
+### Request Body
 The request body should be a JSON object with the following fields:
 - `email`: A string representing a valid email address (required)
 - `password`: A string with at least 6 characters (required)
 
-## Example Response:
-- `user`
-    {
-    - "fullname": {
-      - "firstname": "John",
-      - "lastname": "Doe"
-      },
-    - "email": "john.doe@example.com",
-    - "password": "password123"
-    }
-- `token`(String) : JWT Token
+### Example Response:
+```json
+{ 
+  "token": "JWT Token (string)",
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }
+}
+```
 
-## Endpoint
-`/users/profile`
+## /users/profile Endpoint
 
-## Description
+### Description
 This endpoint is used to retrieve the profile of the authenticated user. It requires a valid authentication token.
 
-## HTTP Method 
+### HTTP Method 
 `GET`
 
-## Request Headers
+### Request Headers
 - `Authorization`: Bearer token (required)
 
-## Example Response:
-- `user`
-    {
-    - "fullname": {
-      - "firstname": "John",
-      - "lastname": "Doe"
-      },
-    - "email": "john.doe@example.com"
-    }
+### Example Response:
+```json
+{
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+  }
+}
+```
 
-## Endpoint
-`/users/logout`
+## /users/logout Endpoint
 
-## Description
+### Description
 This endpoint is used to log out the authenticated user. It clears the authentication token and blacklists it to prevent further use.
 
-## HTTP Method 
+### HTTP Method 
 `GET`
 
-## Request Headers
+### Request Headers
 - `Authorization`: Bearer token (required)
 
-## Example Response:
+### Example Response:
 - `message`: "Logged out successfully"
+
+## /captains/register Endpoint
+
+### Description
+This endpoint is used to register a new captain. It validates the input data, hashes the password, creates a new captain in the database, and returns the captain details.
+
+### HTTP Method 
+`POST`
+
+### Request Body
+The request body should be a JSON object with the following fields:
+- `fullname`: An object containing:
+  - `firstname`: A string with at least 3 characters (required)
+  - `lastname`: A string with at least 3 characters
+- `email`: A string representing a valid email address (required)
+- `password`: A string with at least 5 characters (required)
+- `status` : Active or Inactive (default inactive)
+- `vehicle`: An object containing:
+  - `color`: A string with at least 3 characters (required)
+  - `plate`: A string with at least 3 characters (required)
+  - `capacity`: An integer with a minimum value of 1 (required)
+  - `vehicleType`: A string that must be one of the following values: "car", "motorcycle", "auto" (required)
+
+### Example Request:
+```json
+{
+  "token": "JWT Token (string)",
+  "captain": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "password123",
+    "status": "inactive",
+    "vehicle": {
+      "color": "red",
+      "plate": "XYZ123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
