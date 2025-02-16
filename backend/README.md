@@ -1,6 +1,7 @@
 # Backend API Documentation
 
-## /users/register Endpoint
+## Users Routes
+## `/users/register` Endpoint
 
 ### Description
 This endpoint is used to register a new user. It validates the input data, hashes the password, creates a new user in the database, and returns an authentication token along with the user details.
@@ -31,7 +32,7 @@ The request body should be a JSON object with the following fields:
 }
 ```
 
-## /users/login Endpoint
+## `/users/login` Endpoint
 
 ### Description
 This endpoint is used to authenticate a user. It validates the input data, checks the email and password against the database, and returns an authentication token along with the user details if the credentials are valid.
@@ -59,7 +60,7 @@ The request body should be a JSON object with the following fields:
 }
 ```
 
-## /users/profile Endpoint
+## `/users/profile` Endpoint
 
 ### Description
 This endpoint is used to retrieve the profile of the authenticated user. It requires a valid authentication token.
@@ -68,7 +69,7 @@ This endpoint is used to retrieve the profile of the authenticated user. It requ
 `GET`
 
 ### Request Headers
-- `Authorization`: Bearer token (required)
+- `Authorization`: Bearer token 
 
 ### Example Response:
 ```json
@@ -83,7 +84,7 @@ This endpoint is used to retrieve the profile of the authenticated user. It requ
 }
 ```
 
-## /users/logout Endpoint
+## `/users/logout` Endpoint
 
 ### Description
 This endpoint is used to log out the authenticated user. It clears the authentication token and blacklists it to prevent further use.
@@ -92,12 +93,17 @@ This endpoint is used to log out the authenticated user. It clears the authentic
 `GET`
 
 ### Request Headers
-- `Authorization`: Bearer token (required)
+- `Authorization`: Bearer token
 
 ### Example Response:
-- `message`: "Logged out successfully"
+```json
+{
+  "message": "Logged out successfully"
+}
+```
 
-## /captains/register Endpoint
+## Captains routes
+## `/captains/register` Endpoint
 
 ### Description
 This endpoint is used to register a new captain. It validates the input data, hashes the password, creates a new captain in the database, and returns the captain details.
@@ -119,7 +125,7 @@ The request body should be a JSON object with the following fields:
   - `capacity`: An integer with a minimum value of 1 (required)
   - `vehicleType`: A string that must be one of the following values: "car", "motorcycle", "auto" (required)
 
-### Example Request:
+### Example Response:
 ```json
 {
   "token": "JWT Token (string)",
@@ -138,5 +144,89 @@ The request body should be a JSON object with the following fields:
       "vehicleType": "car"
     }
   }
+}
+```
+
+## `/captains/login` Endpoint
+
+### Description
+This endpoint is used to authenticate a captain. It validates the input data, checks the email and password against the database, and returns an authentication token along with the captain details if the credentials are valid.
+
+### HTTP Method 
+`POST`
+
+### Request Body
+The request body should be a JSON object with the following fields:
+- `email`: A string representing a valid email address (required)
+- `password`: A string with at least 5 characters (required)
+
+### Example Response:
+```json
+{ 
+  "token": "JWT Token (string)",
+  "captain": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "password123",
+    "status": "inactive",
+    "vehicle": {
+      "color": "red",
+      "plate": "XYZ123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+## `/captains/profile` Endpoint
+
+### Description
+This endpoint is used to retrieve the profile of the authenticated captain. It requires a valid authentication token.
+
+### HTTP Method 
+`GET`
+
+### Request Headers
+- `Authorization`: Bearer token
+
+### Example Response:
+```json
+{
+  "captain": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "status": "inactive",
+    "vehicle": {
+      "color": "red",
+      "plate": "XYZ123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+## `/captains/logout` Endpoint
+
+### Description
+This endpoint is used to log out the authenticated captain. It clears the authentication token and blacklists it to prevent further use.
+
+### HTTP Method 
+`GET`
+
+### Request Headers
+- `Authorization`: Bearer token
+
+### Example Response:
+```json
+{
+  "message": "Logged out successfully"
 }
 ```
