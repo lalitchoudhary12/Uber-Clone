@@ -102,7 +102,7 @@ This endpoint is used to log out the authenticated user. It clears the authentic
 }
 ```
 
-## Captains routes
+## Captains Routes
 ## `/captains/register` Endpoint
 
 ### Description
