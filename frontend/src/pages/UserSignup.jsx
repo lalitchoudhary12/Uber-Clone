@@ -1,28 +1,38 @@
 import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext} from 'react';
+import { Link , useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import {UserDataContext} from '../context/UserContext';
 
 const UserSignup = () => {
     const [email , setEmail] = useState("")
     const [password , setPassword] = useState("")
     const [firstName , setFirstName] = useState("")
     const [lastName , setLastName] = useState("")
-    const [userData , setUserData] = useState({})
-    const submithandler = (event) => {  
+    const navigate = useNavigate()
+    const {user,setUser} = useContext(UserDataContext)
+
+    const submithandler = async (event) => {  
         event.preventDefault()
-        setUserData({
-            fullName: {
-                firstName:firstName,
-                lastName:lastName,
-            },
-            email:email,
-            password:password,
-        })
+        const newUser = {
+          fullname: {
+              firstname:firstName,
+              lastname:lastName,
+          },
+          email:email,
+          password:password,
+        }
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`,newUser)
+        if(response.status === 201){
+          const data = response.data
+          setUser(data.user)
+          localStorage.setItem('token',data.token)
+          navigate('/home')
+        }
         setFirstName("")
         setLastName("")
         setEmail("")
-        setPassword("")
-        
+        setPassword("") 
     }
     return (
         <div className='p-7 flex h-screen flex-col justify-between'>
@@ -70,7 +80,7 @@ const UserSignup = () => {
                   }} 
                   className='bg-[#eeeeee] mb-5 border rounded border-gray-300 px-4 py-2 w-full'
                 />
-                <button className='w-full font-semibold rounded bg-black text-white h-10 mb-3'>Signup</button>
+                <button className='w-full font-semibold rounded bg-black text-white h-10 mb-3'>Create User Account</button>
                 <p className='text-center'>Already have a account? <Link to="/login" className='text-blue-600'>Login here</Link></p>
             </form>
             </div>

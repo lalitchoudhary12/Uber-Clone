@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState , useContext} from 'react';
+import { Link , useNavigate } from 'react-router-dom';
+import {CaptainDataContext} from '../context/CaptainContext';
+import axios from 'axios';
 
 const CaptainLogin = () => {
     const [email , setEmail] = useState("")
     const [password , setPassword] = useState("")
-    const [captainData , setCaptainData] = useState({})
-    const submithandler = (event) => {  
+    const navigate = useNavigate()
+    const {captain , setCaptain} = useContext(CaptainDataContext)
+    const submithandler = async (event) => {  
         event.preventDefault()
-        setCaptainData({
+        const captainData ={
             email: email,
             password : password
-        })
+        }
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`,captainData)
+        if(response.status === 200){
+            const data = response.data
+            setCaptain(data.captain)
+            localStorage.setItem('token',data.token)
+            navigate('/captain-home')
+        }
         setEmail("")
         setPassword("")
     }
@@ -41,7 +51,7 @@ const CaptainLogin = () => {
                   }} 
                   className='bg-[#eeeeee] mb-5 border rounded border-gray-300 px-4 py-2 w-full'
                 />
-                <button className='w-full font-semibold rounded bg-black text-white h-10 mb-3'>Login</button>
+                <button className='w-full font-semibold rounded bg-black text-white h-10 mb-3'>Captain Login</button>
                 <p className='text-center'>New to Uber? <Link to="/captain-signup" className='text-blue-600'>Register as a Captain</Link></p>
             </form>
             </div>
