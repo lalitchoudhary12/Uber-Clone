@@ -99,9 +99,9 @@ const Home = () => {
 
     return (
         <div className='h-screen relative overflow-hidden' >
-            <img src="https://logos-world.net/wp-content/uploads/2020/05/Uber-Logo.png" alt="logo" className='w-16 absolute left-5 top-4'/>
+            <img src="https://logos-world.net/wp-content/uploads/2020/05/Uber-Logo.png" alt="logo" className='w-16 absolute left-3 top-2'/>
             <div className='bg-cover bg-center h-screen'>
-                <img className="h-full w-full" src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt="" />
+                <img className="h-full w-full object-cover" src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt="" />
             </div>
             <div className='flex flex-col justify-end h-screen absolute top-0 w-full'>
                 <div className='bg-white h-[29%] p-4 relative'> 
@@ -152,7 +152,7 @@ const Home = () => {
                 <ConfirmRide setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound} setVehiclePanel={setVehiclePanel}/>
             </div>
             <div ref={vehicleFoundRef} className='fixed w-full z-10 bg-white bottom-0 px-3 py-5 translate-y-full'>
-                <LookingForDriver setVehicleFound={setVehicleFound}/>
+                <LookingForDriver setVehicleFound={setVehicleFound} setWaitingForDriver={setWaitingForDriver}/>
             </div>
             <div ref={waitingForDriverRef} className='fixed w-full z-10 bg-white bottom-0 px-3 py-5  translate-y-full'>
                 <WaitingForDriver setWaitingForDriver={setWaitingForDriver}/>
