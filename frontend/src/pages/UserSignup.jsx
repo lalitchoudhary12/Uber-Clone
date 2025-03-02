@@ -9,8 +9,10 @@ const UserSignup = () => {
     const [password , setPassword] = useState("")
     const [firstName , setFirstName] = useState("")
     const [lastName , setLastName] = useState("")
-    const navigate = useNavigate()
+    const [userData,setUserData] = useState("")
     const {user,setUser} = useContext(UserDataContext)
+    const navigate = useNavigate()
+    
 
     const submithandler = async (event) => {  
         event.preventDefault()

@@ -16,21 +16,21 @@ const ConfirmRide = (props)=>{
                     <div className='flex items-center gap-5 p-3 border-b-2'>
                         <i className='text-lg ri-map-pin-user-fill'></i>
                         <div>
-                            <h3 className='text-lg font-medium'>562/11-A</h3>
-                            <p className='text-sm text-gray-600'>Kankariya Talab, Bhopal</p>
+                            <h3 className='text-md font-semibold'>{props.pickup}</h3>
+                            <p className='text-sm text-gray-600'>Pickup</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3 border-b-2'>
                         <i className='text-lg ri-map-pin-2-fill'></i>
                         <div>
-                            <h3 className='text-lg font-medium'>402/2-B</h3>
-                            <p className='text-sm text-gray-600'>Nehru Nagar, Bhopal</p>
+                            <h3 className='text-md font-semibold'>{props.destination}</h3>
+                            <p className='text-sm text-gray-600'>Destination</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3'>
                         <i className='text-lg ri-currency-line'></i>
                         <div>
-                            <h3 className='text-lg font-medium'>₹193.20</h3>
+                            <h3 className='text-md font-semibold'>₹{props.fare[props.vehicleType]}</h3>
                             <p className='text-sm text-gray-600'>Payment : Cash</p>
                         </div>
                     </div>
@@ -38,7 +38,9 @@ const ConfirmRide = (props)=>{
                 <button onClick={()=>{
                     props.setVehicleFound(true) 
                     props.setConfirmRidePanel(false)
-                    props.setVehiclePanel(false)}} 
+                    props.setVehiclePanel(false)
+                    props.createRide()
+                }} 
                     className='w-full mt-1 bg-green-600 text-xl text-white p-2 rounded-lg font-semibold'>
                         Confirm
                 </button>

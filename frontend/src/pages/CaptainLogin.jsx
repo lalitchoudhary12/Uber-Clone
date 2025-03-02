@@ -6,19 +6,21 @@ import axios from 'axios';
 const CaptainLogin = () => {
     const [email , setEmail] = useState("")
     const [password , setPassword] = useState("")
-    const navigate = useNavigate()
+   
+    
     const {captain , setCaptain} = useContext(CaptainDataContext)
+    const navigate = useNavigate()
     const submithandler = async (event) => {  
         event.preventDefault()
-        const captainData ={
+        const captain ={
             email: email,
             password : password
         }
-        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`,captainData)
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`,captain)
         if(response.status === 200){
             const data = response.data
+            localStorage.setItem('token', data.token)
             setCaptain(data.captain)
-            localStorage.setItem('token',data.token)
             navigate('/captain-home')
         }
         setEmail("")

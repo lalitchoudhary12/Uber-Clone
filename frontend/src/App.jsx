@@ -2,7 +2,7 @@ import React from 'react';
 import {Routes, Route} from 'react-router-dom';
 import Start from './pages/Start';
 import UserLogin from './pages/UserLogin';
-import UserSignuo from './pages/UserSignup';
+import UserSignup from './pages/UserSignup';
 import CaptainLogin from './pages/CaptainLogin';
 import CaptainSignup from './pages/CaptainSignup';
 import Home from './pages/Home';
@@ -14,12 +14,14 @@ import CaptainLogout from './pages/CaptainLogout';
 import Riding from './pages/Riding';
 import CaptainRiding from './pages/CaptainRiding'
 
+
+
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Start />} />
       <Route path="/login" element={<UserLogin />} />
-      <Route path="/signup" element={<UserSignuo />} />
+      <Route path="/signup" element={<UserSignup />} />
       <Route path="/captain-login" element={<CaptainLogin />} />
       <Route path="/captain-signup" element={<CaptainSignup />} />
       <Route path="/home" element={

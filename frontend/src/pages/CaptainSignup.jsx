@@ -17,7 +17,7 @@ const CaptainSignup = () => {
     
     const submithandler = async (event) => {  
         event.preventDefault()
-        const newCaptain = {
+        const captainData = {
             fullname: {
               firstname:firstName,
               lastname:lastName,
@@ -31,11 +31,11 @@ const CaptainSignup = () => {
               capacity:vehicleCapacity  
             }
         }
-        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`,newCaptain)
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`,captainData)
         if(response.status === 201){
             const data = response.data
-            setCaptain(data.captain)
             localStorage.setItem('token',data.token)
+            setCaptain(data.captain)
             navigate('/captain-home')
         }
         setFirstName("")

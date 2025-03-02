@@ -18,7 +18,7 @@ const CaptainProtectWrapper = ({children}) => {
             }
         }).then((response)=>{
             if(response.status === 200){
-                setCaptain(response.data.captain)
+                setCaptain(response.data)
                 setIsLoading(false)
             }
         }).catch((error)=>{
@@ -26,6 +26,7 @@ const CaptainProtectWrapper = ({children}) => {
             localStorage.removeItem('token')
             navigate('/captain-login')
         }) 
+        
     },[token])
     
     if(isLoading){

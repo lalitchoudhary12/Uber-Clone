@@ -1,13 +1,27 @@
 import React , {useState} from "react";
 import { Link } from 'react-router-dom';
-
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const ConfirmRidePopUp = (props) => {
     const [otp,setOtp] = useState("")
-
-    const submitHandler = (e)=>{ 
+    const navigate = useNavigate()
+    const submitHandler = async (e)=>{ 
         e.preventDefault()
-        setOtp('')
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/start-ride`,{
+            params : {
+               rideId : props.ride._id,
+               otp : otp
+            },
+            headers : {
+               Authorization : `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        if(response.status === 200) {
+            props.setConfirmRidePopUpPanel(false)
+            props.setRidePopUpPanel(false)
+            navigate('/captain-riding', {state : {ride : props.ride}})
+        }
     }
     return (
         <div>
@@ -15,7 +29,7 @@ const ConfirmRidePopUp = (props) => {
             <div className='flex items-center justify-between mt-4 p-2'>
                 <div className='flex items-center gap-3'>
                     <img className='h-12 rounded-full object-cover w-12' src="https://static.vecteezy.com/system/resources/thumbnails/040/222/100/small/ai-generated-a-smiling-man-in-a-casual-peach-tee-poses-with-ease-his-friendly-demeanor-and-stylish-look-convey-approachability-and-modern-fashion-sense-photo.jpeg" alt="" />
-                    <h2 className='text-xl font-medium'>Nitin Shah</h2>
+                    <h2 className='text-xl font-medium'>{props.ride?.user.fullname.firstname} {props.ride?.user.fullname.lastname}</h2>
                 </div>
                 <h5 className='text-lg font-base'>2.5 km Away</h5>
             </div>
@@ -25,14 +39,14 @@ const ConfirmRidePopUp = (props) => {
                         <i className='text-lg ri-map-pin-user-fill'></i>
                         <div>
                             <h3 className='text-lg font-medium'>562/11-A</h3>
-                            <p className='text-sm text-gray-600'>Kankariya Talab, Bhopal</p>
+                            <p className='text-sm text-gray-600'>{props.ride?.pickup}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3 border-b-2'>
                         <i className='text-lg ri-map-pin-2-fill'></i>
                         <div>
                             <h3 className='text-lg font-medium'>402/2-B</h3>
-                            <p className='text-sm text-gray-600'>Nehru Nagar, Bhopal</p>
+                            <p className='text-sm text-gray-600'>{props.ride?.destination}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3 border-b-2'>
@@ -45,7 +59,7 @@ const ConfirmRidePopUp = (props) => {
                     <div className='flex items-center gap-5 p-3 border-b-2'>
                         <i className='text-lg ri-currency-line'></i>
                         <div>
-                            <h3 className='text-lg font-medium'>₹193.20</h3>
+                            <h3 className='text-lg font-medium'>₹{props.ride?.fare}</h3>
                             <p className='text-sm text-gray-600'>Payment : Cash</p>
                         </div>
                     </div>
@@ -58,7 +72,7 @@ const ConfirmRidePopUp = (props) => {
                     </div>
                 </div>
                 <div>
-                    <form onSubmit={(e)=>{submitHandler(e)}}>
+                    <form onSubmit={submitHandler}>
                         <input 
                            value ={otp}
                            onChange={(e)=>{setOtp(e.target.value)}}
@@ -67,10 +81,10 @@ const ConfirmRidePopUp = (props) => {
                            className='bg-[#eeeeee] px-12 py-2 text-lg w-full rounded-lg mb-3' 
                         />
                         <div className='flex gap-3 w-full'>
-                            <Link to="/captain-riding"
+                            <button
                                 className='w-full flex justify-center mt-1 bg-green-600 text-xl text-white p-2 rounded-lg font-semibold'>
                                     Confirm
-                            </Link>
+                            </button>
                             <button onClick={()=>{
                                 props.setConfirmRidePopUpPanel(false)
                                 }} 
