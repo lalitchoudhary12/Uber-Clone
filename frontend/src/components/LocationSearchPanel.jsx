@@ -3,7 +3,7 @@ import React from 'react';
 
 const LocationSearchPanel = ({ suggestions, handleSuggestionClick }) => {
     return (
-        <div className='p-3 mt-12'>
+        <div className='p-3 mt-10'>
             <ul>
                 {suggestions.map((suggestion, index) => (
                     <li

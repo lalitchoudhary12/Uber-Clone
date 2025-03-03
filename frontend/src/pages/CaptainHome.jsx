@@ -85,14 +85,14 @@ const CaptainHome = () => {
 
     return (
         <div className='h-screen'>
-            <div className='fixed top-0 p-2  flex items-center justify-between w-screen'>
-                <img src="https://pngimg.com/d/uber_PNG24.png" alt="logo" className='w-16'/>
-                <Link to="/captain-login" className='h-10 w-10 bg-white flex items-center justify-center rounded-full'>
-                    <i className='text-2xl font-medium ri-logout-box-r-line'></i>
-                </Link>
-            </div>
             <div className='h-3/5'>
                 <LiveTracking/>
+                <div className='fixed top-0 flex items-center justify-between w-screen'>
+                    <img src="https://pngimg.com/d/uber_PNG24.png" alt="logo" className='w-16 ml-2'/>
+                    <Link to="/captain/logout" className='h-10 w-10 mr-2 bg-white flex items-center justify-center rounded-full'>
+                        <i className='text-2xl font-medium ri-logout-box-r-line'></i>
+                    </Link>
+                </div>
             </div>
             <div className='h-2/5 p-4'> 
                <CaptainDetails setRidePopUpPanel={setRidePopUpPanel} />

@@ -44,8 +44,16 @@ function App() {
          <CaptainLogout />
         </CaptainProtectWrapper>}
       />
-      <Route path="/riding" element={<Riding />} />
-      <Route path="/captain-riding" element={<CaptainRiding />} />
+      <Route path="/riding" element={
+        <UserProtectWrapper>
+          <Riding />
+        </UserProtectWrapper>} 
+      />
+      <Route path="/captain-riding" element={
+        <CaptainProtectWrapper>
+          <CaptainRiding />
+        </CaptainProtectWrapper>} 
+      />
 
     </Routes>
   );

@@ -3,6 +3,7 @@ import { Link , useLocation} from 'react-router-dom';
 import FinishRide from '../components/FinishRide'
 import {useGSAP} from '@gsap/react'
 import gsap from 'gsap';
+import LiveTracking from '../components/LiveTracking';
 
 const CaptainRiding = () =>{
     const [finishRidePanel, setFinishRidePanel] = useState(false)
@@ -24,14 +25,11 @@ const CaptainRiding = () =>{
 
     return (
         <div className='h-screen'>
-            <div className='fixed top-0 p-2  flex items-center justify-between w-screen'>
-                <img src="https://pngimg.com/d/uber_PNG24.png" alt="logo" className='w-16'/>
-                <Link to="/captain-login" className='h-10 w-10 bg-white flex items-center justify-center rounded-full'>
-                    <i className='text-2xl font-medium ri-logout-box-r-line'></i>
-                </Link>
-            </div>
             <div className='h-[83%]'>
-                <img className="h-full w-full object-cover" src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt="" />
+                <LiveTracking/>
+                <div className='fixed top-0 flex items-center justify-between w-screen'>
+                    <img src="https://pngimg.com/d/uber_PNG24.png" alt="logo" className='w-16 ml-2'/>
+                </div>
             </div>
             <div className='h-[17%] p-6 flex items-center justify-between relative bg-white'> 
                 <h5 className="w-[90%] -ml-2 text-center absolute top-0">
