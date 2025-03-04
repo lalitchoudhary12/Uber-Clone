@@ -32,7 +32,7 @@ const Home = () => {
     const [fare,setFare] = useState({})
     const [vehicleType , setvehicleType] = useState(null)
     const [ride ,setRide] = useState(null)
-    const [showPanel , setShowPanel] = useState(false)
+   
 
     const navigate = useNavigate()
     
@@ -93,6 +93,7 @@ const Home = () => {
             gsap.to(panelRef.current, {
                 height: '73%',
                 duration: 0.5,
+                display: 'block'
             });
             gsap.to(panelCloseRef.current, {
                 opacity: 1
@@ -101,6 +102,7 @@ const Home = () => {
             gsap.to(panelRef.current, {
                 height: '0%',
                 duration: 0.5,
+                display: 'none'
             });
             gsap.to(panelCloseRef.current, {
                 opacity: 0
@@ -123,11 +125,13 @@ const Home = () => {
     useGSAP(() => {
         if (confirmRidePanel) {
             gsap.to(confirmRidePanelRef.current, {
-                transform: 'translateX(0)',
+                transform: 'translateY(0)',
+                display: 'block'
             });
         } else {
             gsap.to(confirmRidePanelRef.current, {
-                transform: 'translateX(100%)',
+                transform: 'translateY(100%)',
+                display: 'none'
             });
         }
     }, [confirmRidePanel]);
@@ -135,11 +139,13 @@ const Home = () => {
     useGSAP(() => {
         if (vehicleFound) {
             gsap.to(vehicleFoundRef.current, {
-                transform: 'translateX(0)'
+                transform: 'translateY(0)',
+                display: 'block'
             });
         } else {
             gsap.to(vehicleFoundRef.current, {
-                transform: 'translateX(100%)'
+                transform: 'translateY(100%)',
+                display:'none'
             });
         }
     }, [vehicleFound]);
@@ -188,7 +194,7 @@ const Home = () => {
         <div className='h-screen'>
             <div className='h-[73%] relative'>
                 <LiveTracking/>
-                <div className='fixed top-0 flex items-center justify-between w-screen mt-2 z-20'>
+                <div className='fixed top-0 flex items-center justify-between w-screen mt-2 z-10'>
                     <img src="https://logos-world.net/wp-content/uploads/2020/05/Uber-Logo.png" alt="logo" className='w-16 ml-2 -mt-2'/>
                     <Link to="/user/logout" className='h-10 w-10 mr-2 bg-white flex items-center justify-center rounded-full'>
                         <i className='text-2xl font-medium ri-logout-box-r-line'></i>
@@ -241,10 +247,10 @@ const Home = () => {
             <div ref={vehiclePanelRef} className='fixed w-full z-10 bg-white bottom-0 px-3 py-5 translate-y-full pointer-events-auto'>
                 <VehiclePanel selectVehicle={setvehicleType} fare={fare} setConfirmRidePanel={setConfirmRidePanel} setVehiclePanel={setVehiclePanel} />
             </div>
-            <div ref={confirmRidePanelRef} className=' fixed w-full z-10 bg-white bottom-0 px-3 py-5 translate-x-full pointer-events-auto'>
+            <div ref={confirmRidePanelRef} className=' fixed w-full z-10 bg-white bottom-0 px-3 py-5 translate-y-full pointer-events-auto'>
                 <ConfirmRide pickup={pickup} fare={fare} vehicleType={vehicleType} destination={destination} createRide={createRide} setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound} setVehiclePanel={setVehiclePanel} />
             </div>
-            <div ref={vehicleFoundRef} className=' fixed w-full z-10 bg-white bottom-0 px-3 py-5 translate-x-full pointer-events-auto'>
+            <div ref={vehicleFoundRef} className=' fixed w-full z-10 bg-white bottom-0 px-3 py-5 translate-y-full pointer-events-auto'>
                 <LookingForDriver pickup={pickup} fare={fare} vehicleType={vehicleType} destination={destination} createRide={createRide}  setVehicleFound={setVehicleFound} />
             </div>
             <div ref={waitingForDriverRef} className='fixed z-10 w-full bg-white bottom-0 px-3 py-5  translate-y-full pointer-events-auto'>

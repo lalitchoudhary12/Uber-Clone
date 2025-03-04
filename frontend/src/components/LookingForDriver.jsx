@@ -3,7 +3,7 @@ import React from 'react'
 const LookingForDriver = (props) => {
     return(
         <div>
-            <h5 className="w-[93%] text-center absolute mt-2 top-0" onClick={()=>{props.setVehicleFound(false)}}><i className="text-4xl text-gray-200 ri-arrow-right-wide-line"></i></h5>
+            <h5 className="w-[93%] text-center absolute mt-2 top-0" onClick={()=>{props.setVehicleFound(false)}}><i className="text-4xl text-gray-200 ri-arrow-down-wide-line"></i></h5>
             <h3 className='text-2xl font-semibold mb-3 pt-8'>Looking for a Driver</h3>
             <div className='flex gap-3 justify-between flex-col items-center'>
                 {props.vehicleType === 'car' && (

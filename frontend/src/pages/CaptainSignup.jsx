@@ -31,13 +31,17 @@ const CaptainSignup = () => {
               capacity:vehicleCapacity  
             }
         }
-        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`,captainData)
-        if(response.status === 201){
-            const data = response.data
-            localStorage.setItem('token',data.token)
-            setCaptain(data.captain)
-            navigate('/captain-home')
-        }
+        try {
+          const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, captainData);
+          if (response.status === 201) {
+              const data = response.data;
+              localStorage.setItem('token', data.token);
+              setCaptain(data.captain);
+              navigate('/captain-home');
+          }
+      } catch (error) {
+          console.error('Error during registration:', error.response ? error.response.data : error.message);
+      }
         setFirstName("")
         setLastName("")
         setEmail("")

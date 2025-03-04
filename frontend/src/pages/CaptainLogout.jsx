@@ -18,9 +18,7 @@ export const CaptainLogout = () => {
         console.log(error)
     })
     return (
-        <div>
-            <h1>Captain Logout</h1>
-        </div>
+        <div></div>
     )
 }
 

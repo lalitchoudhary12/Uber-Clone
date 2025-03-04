@@ -13,7 +13,6 @@ function initializeSocket(server) {
     });
 
     io.on("connection", (socket) => {
-        console.log(`Client Connected: ${socket.id}`);
 
         socket.on('join',async (data)=>{
             const { userId, userType } = data
@@ -40,16 +39,11 @@ function initializeSocket(server) {
                 }
             })
         })
-
-        socket.on("disconnect", () => {
-            console.log(`Client disconnected: ${socket.id}`);
-        });
     });
 }
 
 function sendMessageToSocketId(socketId, messageObject) {
     if (io) {
-        console.log(messageObject)
         io.to(socketId).emit(messageObject.event, messageObject.data);
     } else {
         console.error("Socket.io not initialized");

@@ -55,6 +55,7 @@ const CaptainLogin = () => {
                 />
                 <button className='w-full font-semibold rounded bg-black text-white h-10 mb-3'>Captain Login</button>
                 <p className='text-center'>New to Uber? <Link to="/captain-signup" className='text-blue-600'>Register as a Captain</Link></p>
+                <p className='text-center mt-1'><Link to="/contact-us" className='text-blue-600'>Contact Us</Link></p>
             </form>
             </div>
             <div>

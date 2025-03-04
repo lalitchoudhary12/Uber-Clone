@@ -54,6 +54,7 @@ const UserLogin = () => {
                 />
                 <button className='w-full font-semibold rounded bg-black text-white h-10 mb-3'>User Login</button>
                 <p className='text-center'>New to Uber? <Link to="/signup" className='text-blue-600'>Create new Account</Link></p>
+                <p className='text-center mt-1'><Link to="/contact-us" className='text-blue-600'>Contact Us</Link></p>
             </form>
             </div>
             <div>

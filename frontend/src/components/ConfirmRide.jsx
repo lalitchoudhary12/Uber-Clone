@@ -7,7 +7,7 @@ const ConfirmRide = (props)=>{
                 onClick={()=>{
                    props.setConfirmRidePanel(false) 
                 }}>
-                <i className="text-4xl text-gray-200 ri-arrow-right-wide-line"></i>
+                <i className="text-4xl text-gray-200 ri-arrow-down-wide-line"></i>
             </h5>
             <h3 className='text-2xl font-semibold mb-3 pt-8'>Confirm your Ride</h3>
             <div className='flex gap-3 justify-between flex-col items-center'>

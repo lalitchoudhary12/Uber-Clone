@@ -14,13 +14,13 @@ const Riding =()=>{
     })
     return(
         <div className='h-screen'>
-            <div className='h-[45%]'>
+            <div className='h-[60%]'>
                 <LiveTracking />
                 <div className='fixed top-0 flex items-center justify-between w-screen'>
                     <img src="https://logos-world.net/wp-content/uploads/2020/05/Uber-Logo.png" alt="logo" className='w-16 absolute left-3 top-2' />
                 </div>
             </div>
-            <div className='h-[55%] p-4'>
+            <div className='h-[40%] p-4'>
                 <div className='flex items-center justify-between'>
                     {ride?.captain.vehicle.vehicleType === 'car' && (
                         <img className="h-12" src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_538,w_956/v1688398971/assets/29/fbb8b0-75b1-4e2a-8533-3a364e7042fa/original/UberSelect-White.png" alt="" />
@@ -32,8 +32,8 @@ const Riding =()=>{
                         <img className="h-12 ml-4" src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1649231091/assets/2c/7fa194-c954-49b2-9c6d-a3b8601370f5/original/Uber_Moto_Orange_312x208_pixels_Mobile.png" alt="" />
                     )}
                     <div className='text-right mr-3'>
-                        <h2 className='text-lg font-medium -mb-1'>{ride?.captain.fullname.firstname} {ride?.captain.fullname.lastname}</h2>
-                        <h4 className='text-lg font-semibold'>{ride?.captain.vehicle.plate}</h4>
+                        <h2 className='text-lg font-medium -mb-1 capitalize'>{ride?.captain.fullname.firstname} {ride?.captain.fullname.lastname}</h2>
+                        <h4 className='text-lg font-semibold uppercase'>{ride?.captain.vehicle.plate}</h4>
                         <p className='text-xs text-gray-600'>Maruti Suzuki Alto</p>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ const Riding =()=>{
                     </div>
                 </div>
                 <div>
-                    <Link to="/home" className='w-full flex items-center justify-center font-semibold rounded-lg bg-green-600 text-white h-11 mt-5 text-xl '>Done Payment</Link>
+                    <Link to="/home" className=' w-full flex items-center justify-center font-semibold rounded-lg bg-green-600 text-white h-11 mt-5 text-xl '>Done Payment</Link>
                 </div>
             </div>  
         </div>
