@@ -365,3 +365,96 @@ This endpoint is used to calculate the fare for a ride based on the pickup and d
   "car": 75.0,
   "moto": 35.0
 }
+```
+
+## Rides Routes
+
+## `/rides/confirm` Endpoint
+
+### Description
+This endpoint is used to confirm a ride by the captain. It validates the input data and updates the ride status to 'accepted'.
+
+### HTTP Method 
+`POST`
+
+### Request Body
+The request body should be a JSON object with the following fields:
+- `rideId`: A string representing the ride ID (required, must be a valid MongoDB ObjectId)
+
+### Request Headers
+- `Authorization`: Bearer token (required)
+
+### Example Response:
+```json
+{
+  "_id": "60c72b2f9b1e8b001c8e4e1a",
+  "user": "60c72b2f9b1e8b001c8e4e19",
+  "pickup": "123 Main St",
+  "destination": "456 Elm St",
+  "fare": 75,
+  "status": "accepted",
+  "otp": "123456",
+  "captain": "60c72b2f9b1e8b001c8e4e1b",
+  "__v": 0
+}
+```
+
+## `/rides/start-ride` Endpoint
+
+### Description
+This endpoint is used to start a ride by the captain. It validates the input data and updates the ride status to 'ongoing'.
+
+### HTTP Method 
+`GET`
+
+### Query Parameters
+- `rideId`: A string representing the ride ID (required, must be a valid MongoDB ObjectId)
+- `otp`: A string representing the OTP (required, must be 6 characters long)
+
+### Request Headers
+- `Authorization`: Bearer token (required)
+
+### Example Response:
+```json
+{
+  "_id": "60c72b2f9b1e8b001c8e4e1a",
+  "user": "60c72b2f9b1e8b001c8e4e19",
+  "pickup": "123 Main St",
+  "destination": "456 Elm St",
+  "fare": 75,
+  "status": "ongoing",
+  "otp": "123456",
+  "captain": "60c72b2f9b1e8b001c8e4e1b",
+  "__v": 0
+}
+```
+
+## `/rides/end-ride` Endpoint
+
+### Description
+This endpoint is used to end a ride by the captain. It validates the input data and updates the ride status to 'completed'.
+
+### HTTP Method 
+`POST`
+
+### Request Body
+The request body should be a JSON object with the following fields:
+- `rideId`: A string representing the ride ID (required, must be a valid MongoDB ObjectId)
+
+### Request Headers
+- `Authorization`: Bearer token (required)
+
+### Example Response:
+```json
+{
+  "_id": "60c72b2f9b1e8b001c8e4e1a",
+  "user": "60c72b2f9b1e8b001c8e4e19",
+  "pickup": "123 Main St",
+  "destination": "456 Elm St",
+  "fare": 75,
+  "status": "completed",
+  "otp": "123456",
+  "captain": "60c72b2f9b1e8b001c8e4e1b",
+  "__v": 0
+}
+```
