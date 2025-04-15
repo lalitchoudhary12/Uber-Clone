@@ -8,7 +8,6 @@ This project is a clone of the Uber application built using the MERN stack (Mong
 - **Node.js**: JavaScript runtime for building the backend.
 - **Express.js**: Web framework for Node.js.
 - **MongoDB**: NoSQL database for storing data.
-- **Mongoose**: ODM for MongoDB.
 - **JWT**: For authentication and authorization.
 - **bcrypt**: For hashing passwords.
 - **dotenv**: For managing environment variables.
@@ -17,8 +16,6 @@ This project is a clone of the Uber application built using the MERN stack (Mong
 - **React**: JavaScript library for building user interfaces.
 - **Vite**: Next-generation frontend tooling.
 - **Tailwind CSS**: Utility-first CSS framework.
-- **ESLint**: Linting utility for JavaScript and JSX.
-- **PostCSS**: Tool for transforming CSS with JavaScript plugins.
 
 ## Features
 ### Backend
@@ -34,8 +31,7 @@ This project is a clone of the Uber application built using the MERN stack (Mong
 - **User Interface**: Responsive UI built with React and Tailwind CSS.
 - **Vehicle Selection**: Users can select different types of vehicles (car, auto, moto).
 - **Fare Display**: Display fare for selected vehicle type.
-- **Protected Routes**: Routes protected by authentication.
-- **Real-time Updates**: Real-time updates for ride status.
+- **Protected Rides**: Rides protected by authentication.
 
 ## Available Routes
 ### Backend
